@@ -60,7 +60,31 @@ class _PhotoListState extends State<PhotoList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Photo Streams'),
+      ),
+      body: Center(
+        child: ListView.builder(
+            itemBuilder: (BuildContext context, int index) =>
+                makeElement(index)),
+      ),
+    );
+  }
+
+  makeElement(int index) {
+    if (index >= list.length) {
+      return null;
+    }
+    return Container(
+      padding: EdgeInsets.all(5.0),
+      child: Column(
+        children: <Widget>[
+          Image.network(list[index].url),
+          Text(list[index].title)
+        ],
+      ),
+    );
   }
 }
 
